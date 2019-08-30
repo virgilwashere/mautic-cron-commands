@@ -1,10 +1,12 @@
 ---
-name: Example Bug report 🐜
-about: Create a report to help us improve 📝
-title: '[BUG] '
+name: "Example Bug report \U0001F41C"
+about: "Create a report to help us improve \U0001F4DD"
+title: "[BUG] "
 labels: ''
 assignees: ''
+
 ---
+
 # Bug Report
 
 <!-- CLICK "Preview" TO SEE THE INSTRUCTIONS IN A MORE READABLE FORMAT -->
