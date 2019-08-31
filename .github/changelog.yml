@@ -1,0 +1,33 @@
+style: github
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  repository_url: https://github.com/virgilwashere/mautic-cron-commands
+options:
+  commits:
+    filters:
+      Type:
+        - rel
+        - feat
+        - fix
+        - perf
+        - refactor
+        - docs
+        - chore
+  commit_groups:
+    title_maps:
+      rel: Release tag
+      feat: Features
+      fix: Bug Fixes
+      perf: Performance Improvements
+      refactor: Code Refactoring
+      docs: Documentation
+      chore: Repository maintenance
+  header:
+    pattern: "^(\\w*)\\:\\s(.*)$"
+    pattern_maps:
+      - Type
+      - Subject
+  notes:
+    keywords:
+      - BREAKING CHANGE
