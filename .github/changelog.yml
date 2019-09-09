@@ -7,7 +7,6 @@ options:
   commits:
     filters:
       Type:
-        - rel
         - feat
         - fix
         - perf
@@ -16,7 +15,6 @@ options:
         - chore
   commit_groups:
     title_maps:
-      rel: Release tag
       feat: Features
       fix: Bug Fixes
       perf: Performance Improvements
