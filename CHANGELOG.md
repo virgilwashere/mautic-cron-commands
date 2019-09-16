@@ -1,29 +1,48 @@
+---
+author:     Virgil <virgil@virgilwashere.co>
+date:       2019-09-17
+version:    0.1.3
+copyright:  2019 Virgil <virgil@virgilwashere.co>
+license:    GPL3
+link:       <https://github.com/virgilwashere/mautic-cron-commands>
+---
 # CHANGELOG
 
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
+
+This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <a name="unreleased"></a>
-## [Unreleased]
 
+## 🚧 [Unreleased]
+
+### 📝 Documentation
+
+- :bug: Use GFM-compatible flash messages
 
 <a name="0.1.3"></a>
-## [0.1.3] - 2019-09-10
 
-### Code Refactoring
+## 🔖 [0.1.3] - 2019-09-10
+
+### 🎨 Code Refactoring
 
 - :children_crossing: HTML standards compliance
 - :hammer: refactor PHP code
 
-### Documentation
+### 📝 Documentation
 
 - :lipstick: add screenshots of `pretty` output
 - :memo: update documentation references
 
-<a name="0.1.2"></a>
-## [0.1.2] - 2019-08-31
+### 🔨 Repository maintenance
 
-### Features
+- :bookmark: release 0.1.3
+
+<a name="0.1.2"></a>
+
+## 🔖 [0.1.2] - 2019-08-31
+
+### ✨ Features
 
 - :art: updated `&pretty` output
 - :bulb: document parameters
@@ -35,38 +54,37 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - :bento: update base64 images
 - :children_crossing: moved the _dangerous_ commands to the end of the list
 
-
 <a name="0.1.1"></a>
-## [0.1.1] - 2019-08-31
 
-### Documentation
+## 🔖 [0.1.1] - 2019-08-31
+
+### 📝 Documentation
 
 - :memo: Add CHANGELOG
 - :page_facing_up: Create CODE_OF_CONDUCT.md
 
-### Repository maintenance
+### 🔨 Repository maintenance
 
 - :wrench: dotfiles
 
-
 <a name="0.1.0"></a>
-## 0.1.0 - 2019-06-02
 
-### Documentation
+## 🔖0.1.0 - 2019-06-02
+
+### ✨ Features
+
+- :tada: commands.php
+
+### 📝 Documentation
 
 - :memo: add README
 - :page_facing_up: add GPL-3.0-only LICENSE
 
-### Features
-
-- :tada: commands.php
-
-### Repository maintenance
+### 🔨 Repository maintenance
 
 - :page_facing_up: Add issue templates
 
-
-[Unreleased]: https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.3...HEAD
-[0.1.3]: https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.2...0.1.3
-[0.1.2]: https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.1...0.1.2
-[0.1.1]: https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.0...0.1.1
+[Unreleased]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.3...HEAD>
+[0.1.3]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.2...0.1.3>
+[0.1.2]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.1...0.1.2>
+[0.1.1]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.0...0.1.1>
