@@ -44,6 +44,8 @@ $request_uri =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
  */
 
 $allowedCmds = array(
+    'list',
+    'debug:router',
     'mautic:segments:update',
     'mautic:campaigns:update',
     'mautic:campaigns:trigger',
@@ -99,12 +101,13 @@ $css_back='<style type="text/css">
         color:#FCB833;
         background-color:#4E5E9E;
         border: 3px solid #4E5E9E;
-    }</style>'."\n";
+    }</style>';
 $css_container='<style type="text/css">
     body {
         padding: 20px;
         font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
     }
+    li { font-size: smaller; }
     h3 {
         font-family: Open Sans, Helvetica, Arial,sans-serif;
     }
@@ -161,7 +164,7 @@ if (!isset($_GET['task'])) {
         echo "  </head><body>\n";
         echo '
     <div class="container">
-        <a target="new" href="/s/login"><img class="container__image" src="data:image/png;base64, '.$logo.'" alt="Mautic logo"></a>
+        <a target="new" href="/s/login"><img class="container__image" src="data:image/png;base64, '.$logo.'" alt="logo"></a>
         <div class="container__heading">'."
             <h3>{$_SERVER['HTTP_HOST']} maintenance commands</h3>
         </div>
@@ -217,15 +220,15 @@ if (isset($pretty)) {
     echo '
 <div class="container">
     <img class="container__image" src="data:image/png;base64, '.$mautibot.'" alt="Mautibot™">
-    <div class="container__heading">
-        <h3>Executing '.implode(' ', $console)."</h3>
+    <div class="container__heading">'."
+        <h3>Executing console command</h3>
     </div>
 </div>\n";
 } else {
     echo "</head><body>\n";
-    echo '<h3>Executing '.implode(' ', $console)."</h3>\n";
+    echo "<h3>Executing console command</h3>\n";
 }
-
+    echo "<pre>".implode(' ', $console)."</pre>\n";
 require_once __DIR__.'/app/autoload.php';
 require_once __DIR__.'/app/AppKernel.php';
 require __DIR__.'/vendor/autoload.php';
