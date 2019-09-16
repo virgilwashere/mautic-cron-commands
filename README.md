@@ -1,13 +1,12 @@
 ---
- author:     Virgil <virgil@virgilwashere.co>
- date:       2019-09-10
- version:    0.1.3
- copyright:  2019 Virgil
- license:    GPL3
+author:     Virgil <virgil@virgilwashere.co>
+date:       2019-09-17
+version:    0.1.3
+copyright:  2019 Virgil <virgil@virgilwashere.co>
+license:    GPL3
+link:       <https://github.com/virgilwashere/mautic-cron-commands>
 ---
-<!-- markdownlint-disable MD033 -->
 <img alt="Mautic" align="right" width=72 src="assets/mautic_logo.png?raw=true">
-<!-- markdownlint-enable MD033 -->
 
 # Mautic cron commands
 
@@ -46,10 +45,8 @@
 
 ## How to use 🚴
 
-<!-- markdownlint-disable MD033 -->
 <!-- <img alt="mautibot" align="right" src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautibot32.png"> -->
 <img alt="mautibot" align="right" src="assets/mautibot32.png?raw=true">
-<!-- markdownlint-enable MD033 -->
 
 When you open the URL, you are presented with a list of available commands. You can click on those to run the command, or use the Encoded URL link to a specific command in a cronjob/scheduler service, like [Jenkins CI/CD][jenkins].
 
@@ -65,7 +62,62 @@ When you open the URL, you are presented with a list of available commands. You 
     https://mautic.example.com/commands.php?mautibot_happy&pretty
    ```
 
+<!-- ![pretty-list](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-list.png "command list") -->
 ![pretty-list](/assets/pretty-list.png?raw=true "command list")
+
+<details><summary>command list</summary>
+
+```text
+list
+debug:router
+mautic:segments:update
+mautic:campaigns:update
+mautic:campaigns:trigger
+cache:clear
+mautic:emails:send
+mautic:emails:fetch
+mautic:broadcasts:send
+mautic:queue:process
+mautic:webhooks:process
+mautic:reports:scheduler
+mautic:plugins:update
+mautic:iplookup:download
+mautic:assets:generate
+mautic:segments:update --force
+mautic:campaigns:update --force
+mautic:campaigns:trigger --force
+mautic:campaigns:update --batch-limit=25
+mautic:campaigns:trigger --batch-limit=25
+mautic:campaigns:messages --channel=email
+mautic:campaigns:messages --channel=sms
+cache:clear --no-interaction --no-warmup --no-optional-warmers
+cache:warmup --no-interaction --no-optional-warmers
+mautic:social:monitoring
+social:monitor:twitter:hashtags
+social:monitor:twitter:mentions
+mautic:dashboard:warm
+debug:swiftmailer
+mautic:integration:pushleadactivity
+mautic:integration:fetchleads
+mautic:contacts:deduplicate
+mautic:import --limit=600 --quiet
+mautic:dnc:import --no-interaction
+mautic:maintenance:cleanup --no-interaction --days-old=90 --dry-run
+mautic:maintenance:cleanup --no-interaction --days-old=365 --dry-run
+mautic:maintenance:cleanup --no-interaction --days-old=90
+mautic:maintenance:cleanup --no-interaction --days-old=365
+mautic:update:find
+doctrine:mapping:info
+doctrine:migrations:status
+doctrine:migrations:status --show-versions
+doctrine:schema:update --no-interaction --dump-sql
+doctrine:migrations:migrate --no-interaction --allow-no-migration
+doctrine:schema:update --no-interaction --dump-sql --force
+mautic:install:data --no-interaction --force
+mautic:update:apply --no-interaction --force
+```
+
+</details>
 
 ### Cron jobs 🕖
 
@@ -83,7 +135,6 @@ When you open the URL, you are presented with a list of available commands. You 
     > 💡 ProTip\
     > `curl` can also use this syntax:\
     > `curl -L 'http://mautic.example.com/commands.php?mautibot_happy&task=mautic:campaigns:trigger'`
-<!-- > `curl --request GET 'http://mautic.example.com/commands.php?mautibot_happy&task=mautic:campaigns:trigger'` -->
 
 ### Basic output 🔰
 
@@ -113,11 +164,11 @@ Executing console mautic:campaigns:trigger
 
 ### Pretty output 💍
 
+<!-- ![pretty-output](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-output.png "pretty format command output") -->
 ![pretty-output](assets/pretty-output.png?raw=true "pretty format command output")
 
-<!-- markdownlint-disable MD033 -->
-<img alt="mautibot" align="right" width=64 src="assets/mautic_logo.png?raw=true">
-<!-- markdownlint-enable MD033 -->
+<!-- <img alt="Mautic logo" align="right" width=64 src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautic_logo.png"> -->
+<img alt="Mautic logo" align="right" width=64 src="assets/mautic_logo.png?raw=true">
 
 ## Mautic documentation 📜
 
@@ -128,9 +179,8 @@ Executing console mautic:campaigns:trigger
 - [Update troubleshooting]
 - [Command line]
 
-<!-- markdownlint-disable MD033 -->
+<!-- <img alt="mautibot" align="right" src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautibot32.png"> -->
 <img alt="mautibot" align="right" src="assets/mautibot32.png?raw=true">
-<!-- markdownlint-enable MD033 -->
 
 ## Related projects ⛅️
 
