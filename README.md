@@ -171,7 +171,7 @@ The output from the script will be sent to the browser so you can see the result
 
 ```console
 Executing console mautic:campaigns:trigger
- Triggering events for campaign 5
+ Triggering events for campaign 1
  Triggering events for newly added contacts
  2 total events(s) to be processed in batches of 100 contacts
   0/2 [>---------------------------]   0%
@@ -193,11 +193,13 @@ Executing console mautic:campaigns:trigger
 
 ### 💍 Pretty output
 
-<!-- ![pretty-output](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-output.png "pretty format command output") -->
-![pretty-output](assets/pretty-output.png?raw=true "pretty format command output")
+<!-- ![pretty format campaign trigger](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-output.png "pretty format command output") -->
+![pretty format campaign trigger](assets/pretty-output.png?raw=true "pretty format campaign trigger")
 
-<!-- <img alt="Mautic logo" align="right" width=64 src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautic_logo.png"> -->
-<img alt="Mautic logo" align="right" width=64 src="assets/mautic_logo.png?raw=true">
+![pretty format migrations status](assets/pretty-output2.png?raw=true "pretty format migrations status")
+
+<!-- <img alt="Mautic logo" align="right" width=128 src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautic_logo.png"> -->
+<img alt="Mautic logo" align="right" width=128 src="assets/mautic_logo.png?raw=true">
 
 ## Mautic documentation 📜
 

@@ -174,37 +174,37 @@ $css='    <style type="text/css">
         .container {
             padding: 0px 20px 0px;
             max-width: 600px;
-            background-color:#4E5E9E;
-            border: 3px solid #4E5E9E;
+            background-color:#AAAAAA;
+            border: 3px solid #AAAAAA;
         }
         .container__logo {
             display: inline-block;
             vertical-align: top;
             margin: 20px 20px 0 0;
             width: 45%;
-            border: 3px solid #4E5E9E;
+            border: 3px solid #AAAAAA;
         }
         .container__heading {
             display: inline-block;
             vertical-align: top;
             text-align: center;
             width: 45%;
-            color:#FFDC00;
-            border: 3px solid #4E5E9E;
+            color:#4E5E9E;
+            border: 3px solid #AAAAAA;
         }
         .container__image {
             display: inline-block;
             vertical-align: top;
             margin: 5px 10px 5px 0;
             width: 13%;
-            border: 3px solid #4E5E9E;
+            border: 3px solid #AAAAAA;
         }
         .container__results {
             display: inline-block;
             vertical-align: top;
             width: 80%;
-            color:#FFDC00;
-            border: 3px solid #4E5E9E;
+            color:#4E5E9E;
+            border: 3px solid #AAAAAA;
         }
         .container__arrow {
             display: inline-block;
@@ -212,8 +212,8 @@ $css='    <style type="text/css">
             padding: 0px 10px 0px 0px;
             text-align:center;
             max-width: 160px;
-            background-color:#4E5E9E;
-            border: 3px solid #4E5E9E;
+            background-color:#AAAAAA;
+            border: 3px solid #AAAAAA;
         }
         @media (max-width: 620px) {
             .container__results {
