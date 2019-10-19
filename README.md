@@ -16,6 +16,8 @@ link:       <https://github.com/virgilwashere/mautic-cron-commands>
 
 - [Requirements ☑️](#requirements-️)
 - [Installation 🚀](#installation-)
+  - [nginx config for shared vhosts](#nginx-config-for-shared-vhosts)
+    - [`snippets/mautic_cron.conf`](#snippetsmautic_cronconf)
 - [How to use 🚴](#how-to-use-)
   - [👪 Interactively](#-interactively)
   - [Cron jobs 🕖](#cron-jobs-)
@@ -43,6 +45,44 @@ link:       <https://github.com/virgilwashere/mautic-cron-commands>
 1. 🐦Copy your modifed `commands.php` to the root folder of your Mautic installation via SSH terminal, (s)FTP upload or carrier pigeon.
     > ℹ️ **NOTE**\
     > This is the same level as Mautic's `LICENSE.txt` file and the directory `app/`
+
+### nginx config for shared vhosts
+
+Add this to the `server` block for the vhost.
+
+```nginx
+server {
+    #server_name      mautic.example.com;
+    #...
+
+    set $mautic_root /var/www/vhost1/mautic;
+    include snippets/mautic_cron.conf;
+}
+```
+
+#### `snippets/mautic_cron.conf`
+
+```nginx
+    location /cron/ {
+        # URL would be https://mautic.example.com/cron/commands.php
+        root    /mnt/www/mautic/;
+        index   commands.php;
+
+        location ~ /(commands|import)\.php(/|$) {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+
+            #override SCRIPT_FILENAME
+            fastcgi_param  SCRIPT_FILENAME $request_filename;
+            fastcgi_param  HTTP_PROXY   "";
+            fastcgi_read_timeout        600;
+            fastcgi_buffers             16 16k;
+            fastcgi_buffer_size         32k;
+            fastcgi_intercept_errors    on;
+            fastcgi_param  MAUTIC_ROOT  $mautic_root;
+        }
+    }
+```
 
 ## How to use 🚴
 
