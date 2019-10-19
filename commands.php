@@ -18,7 +18,7 @@
  * @var         string $logo            img src
  * @var         string $mautibot        img src
  * @var         string $server_name     HTTP header SERVER_NAME
- * @var         string $docroot         directory where script resides
+ * @var         string $docroot         Path to Mautic root
  * @var         string $version         Mautic version
  * @link        https://github.com/virgilwashere/mautic-cron-commands
  * @link        https://mautic.org
@@ -33,8 +33,12 @@
 $author='Virgil <virgil@virgilwashere.co>';
 
 $server_name = filter_input(INPUT_SERVER, 'SERVER_NAME');
-if (isset($_SERVER['APP_ROOT'])) {
-    $docroot = filter_input(INPUT_SERVER, 'APP_ROOT').'/mautic';
+if (isset($_SERVER['MAUTIC_ROOT'])) {
+    // The path to Mautic root.
+    // Please note: %kernel.root_dir% = $docroot/app
+
+    // $docroot = filter_input(INPUT_SERVER, 'MAUTIC_ROOT').'/mautic';
+    $docroot = filter_input(INPUT_SERVER, 'MAUTIC_ROOT');
 } else {
     $docroot = __DIR__;
 }
