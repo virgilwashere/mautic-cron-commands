@@ -227,7 +227,7 @@ $html_meta = '    <meta charset="utf-8">
     <meta name="description" content="Mautic cron and maintenance commands">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/media/images/favicon.ico">
     <link rel="icon" type="image/x-icon" href="/media/images/favicon.ico" />
     <link rel="icon" sizes="72x72" href="/media/images/favicon.ico">
     <link rel="apple-touch-icon" href="/media/images/apple-touch-icon.png" />';
@@ -240,7 +240,7 @@ $html_meta = '    <meta charset="utf-8">
 // $logo_base64 = 'iVBORw0KGgoA...';
 // $logo='"data:image/png;base64, '.$logo_base64.'"';
 $cdn='https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands';
-$mautibot=$cdn . '/assets/mautibot32.png';
+$mautibot=$cdn . '/assets/mautibot.png';
 $logo=$cdn . '/assets/mautic_logo.png';
 $backarrow=$cdn . '/assets/arrow-left-trans.png';
 
