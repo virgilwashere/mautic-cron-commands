@@ -1,8 +1,10 @@
-{{ if .Versions -}}{{ $latest := index .Versions 0 }}---
+{{- /* <!-- markdownlint-disable --><!-- spellchecker:ignore markdownlint --> */ -}}{{ if .Versions -}}{{ $latest := index .Versions 0 }}---
 author:     Virgil <virgil@virgilwashere.co>
 date:       {{ datetime "2006-01-02" $latest.Tag.Date }}
 version:    {{ $latest.Tag.Name }}
-copyright:  {{ datetime "2006" $latest.Tag.Date }} Virgil. All rights reserved.
+copyright:
+  - {{ datetime "2006" $latest.Tag.Date }} Virgil
+  - All rights reserved
 license:    GPL3
 link:       <{{ .Info.RepositoryURL }}>
 {{ end -}}---
