@@ -1,7 +1,7 @@
 ---
 author:     Virgil <virgil@virgilwashere.co>
 date:       2019-10-20
-version:    0.1.4
+version:    0.1.5
 copyright:
   - 2019 Virgil
   - All rights reserved
@@ -70,54 +70,78 @@ When you open the URL, you are presented with a list of available commands. You 
 
 <details><summary>command list</summary>
 
-```text
-list
-debug:router
-mautic:segments:update
-mautic:campaigns:update
-mautic:campaigns:trigger
-cache:clear
-mautic:emails:send
-mautic:emails:fetch
-mautic:broadcasts:send
-mautic:queue:process
-mautic:webhooks:process
-mautic:reports:scheduler
-mautic:plugins:update
-mautic:iplookup:download
-mautic:assets:generate
-mautic:segments:update --force
-mautic:campaigns:update --force
-mautic:campaigns:trigger --force
-mautic:campaigns:update --batch-limit=25
-mautic:campaigns:trigger --batch-limit=25
-mautic:campaigns:messages --channel=email
-mautic:campaigns:messages --channel=sms
-cache:clear --no-interaction --no-warmup --no-optional-warmers
-cache:warmup --no-interaction --no-optional-warmers
-mautic:social:monitoring
-social:monitor:twitter:hashtags
-social:monitor:twitter:mentions
-mautic:dashboard:warm
-debug:swiftmailer
-mautic:integration:pushleadactivity
-mautic:integration:fetchleads
-mautic:contacts:deduplicate
-mautic:import --limit=600 --quiet
-mautic:dnc:import --no-interaction
-mautic:maintenance:cleanup --no-interaction --days-old=90 --dry-run
-mautic:maintenance:cleanup --no-interaction --days-old=365 --dry-run
-mautic:maintenance:cleanup --no-interaction --days-old=90
-mautic:maintenance:cleanup --no-interaction --days-old=365
-mautic:update:find
-doctrine:mapping:info
-doctrine:migrations:status
-doctrine:migrations:status --show-versions
-doctrine:schema:update --no-interaction --dump-sql
-doctrine:migrations:migrate --no-interaction --allow-no-migration
-doctrine:schema:update --no-interaction --dump-sql --force
-mautic:install:data --no-interaction --force
-mautic:update:apply --no-interaction --force
+```php
+$allowedCmds = array(
+    'list',
+    'mautic:segments:update',
+    'mautic:campaigns:update',
+    'mautic:campaigns:trigger',
+    'cache:clear',
+    'mautic:emails:send',
+    'mautic:emails:fetch',
+    'mautic:emails:send --quiet',
+    'mautic:emails:fetch --quiet',
+    'mautic:broadcasts:send',
+    'mautic:broadcasts:send --quiet',
+    'mautic:broadcasts:send --channel=email',
+    'mautic:broadcasts:send --channel=sms',
+    'mautic:messages:send',
+    'mautic:campaigns:messages',
+    'mautic:campaigns:messages --channel=email',
+    'mautic:campaigns:messages --channel=sms',
+    'mautic:queue:process',
+    'mautic:webhooks:process',
+    'mautic:reports:scheduler',
+    'mautic:plugins:update',
+    'mautic:iplookup:download',
+    'mautic:assets:generate',
+    'mautic:segments:update --force',
+    'mautic:campaigns:update --force',
+    'mautic:campaigns:trigger --force',
+    'mautic:segments:update --max-contacts=300 --batch-limit=300',
+    'mautic:segments:update --max-contacts=300 --batch-limit=300 --quiet',
+    'mautic:segments:update --max-contacts=300 --batch-limit=300 --force',
+    'mautic:segments:update --max-contacts=1000 --batch-limit=1000',
+    'mautic:segments:update --max-contacts=1000 --batch-limit=1000 --quiet',
+    'mautic:campaigns:update --max-contacts=100 --quiet',
+    'mautic:campaigns:update --max-contacts=300 --quiet',
+    'mautic:campaigns:trigger --quiet',
+    'cache:clear --no-interaction --no-warmup --no-optional-warmers',
+    'cache:warmup --no-interaction --no-optional-warmers',
+    'mautic:social:monitoring',
+    'mautic:integration:pushleadactivity --integration=XXX',
+    'mautic:integration:fetchleads --integration=XXX',
+    'mautic:import --limit=600',
+    'mautic:import --limit=600 --quiet',
+    'mautic:dnc:import --limit=600',
+    'mautic:dnc:import --limit=600 --quiet',
+    'mautic:maintenance:cleanup --no-interaction --days-old=90 --dry-run',
+    'mautic:maintenance:cleanup --no-interaction --days-old=365 --dry-run',
+    'mautic:maintenance:cleanup --no-interaction --days-old=90',
+    'mautic:maintenance:cleanup --no-interaction --days-old=365',
+    'doctrine:migrations:status',
+    'doctrine:migrations:status --show-versions',
+    'doctrine:migrations:migrate --allow-no-migration --dry-run',
+    'doctrine:migrations:migrate --allow-no-migration --no-interaction',
+    'doctrine:migrations:migrate --allow-no-migration --query-time --dry-run',
+    'doctrine:migrations:migrate --allow-no-migration --query-time --no-interaction',
+    'doctrine:schema:update',
+    'doctrine:schema:update --dump-sql',
+    'doctrine:schema:validate',
+    'doctrine:schema:update --no-interaction --dump-sql --force',
+    'doctrine:schema:update --no-interaction --force',
+    'debug:swiftmailer',
+    'debug:router',
+    'doctrine:mapping:info',
+    'debug:event-dispatcher',
+    'mautic:install:data --no-interaction --force',
+    'mautic:contacts:deduplicate',
+    'mautic:unusedip:delete',
+    'mautic:dashboard:warm',
+    'mautic:campaign:summarize',
+    'mautic:update:find',
+    'mautic:update:apply --no-interaction --force',
+);
 ```
 
 </details>
