@@ -6,9 +6,9 @@
  * to run the Mautic command line tool "console"
  *
  * @abstract    Script to run Mautic (mautic.org) commands from a web page.
- * @copyright   2019 Virgil
- * @version     0.1.3
- * @date        2019-09-10
+ * @copyright   2019 Virgil. All rights reserved
+ * @version     0.1.4
+ * @date        2019-10-20
  * @author      Virgil <virgil@virgilwashere.co>
  * @license     GPL3
  * @param       string $secretphrase    Passphrase to limit execution of commands
@@ -244,7 +244,7 @@ try {
     $app->setAutoExit(false);
     $result = $app->run($input, $output);
     echo "<pre>\n{$output->fetch()}</pre>\n";
-} catch (\Exception $exception) {
+} catch (\Exception $e) {
     echo "Exception raised: {$e->getMessage()}\n";
 } finally {
     if (isset($pretty)) {
