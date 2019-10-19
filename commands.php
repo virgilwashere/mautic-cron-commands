@@ -7,7 +7,7 @@
  *
  * @abstract    Script to run Mautic (mautic.org) commands from a web page.
  * @copyright   2019 Virgil. All rights reserved
- * @version     0.1.4
+ * @version     0.1.5
  * @date        2019-10-20
  * @author      Virgil <virgil@virgilwashere.co>
  * @license     GPL3
@@ -31,8 +31,8 @@ $author='Virgil <virgil@virgilwashere.co>';
 
 $secretphrase= "mautibot_happy";
 if (!isset($_GET[$secretphrase])) {
-    echo 'The secret phrase is wrong.';
-    die;
+    http_response_code(401);
+    die('Unauthorized');
 }
 defined('IN_MAUTIC_CONSOLE') or define('IN_MAUTIC_CONSOLE', 1);
 $version = file_get_contents(__DIR__.'/app/version.txt');
@@ -41,23 +41,24 @@ if (isset($_GET['pretty'])) {
 }
 $request_uri =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 
-/**
- * @todo create a displayCmds array to use for page generation.
- * Allows for aliased commands to be added to $allowedCmds
- *  eg mautic:segments:update and mautic:segments:rebuild
- * @var string[] $allowedCmds will still be authorative list commands.
- */
-
 $allowedCmds = array(
     'list',
-    'debug:router',
     'mautic:segments:update',
     'mautic:campaigns:update',
     'mautic:campaigns:trigger',
     'cache:clear',
     'mautic:emails:send',
     'mautic:emails:fetch',
+    'mautic:emails:send --quiet',
+    'mautic:emails:fetch --quiet',
     'mautic:broadcasts:send',
+    'mautic:broadcasts:send --quiet',
+    'mautic:broadcasts:send --channel=email',
+    'mautic:broadcasts:send --channel=sms',
+    'mautic:messages:send',
+    'mautic:campaigns:messages',
+    'mautic:campaigns:messages --channel=email',
+    'mautic:campaigns:messages --channel=sms',
     'mautic:queue:process',
     'mautic:webhooks:process',
     'mautic:reports:scheduler',
@@ -67,35 +68,49 @@ $allowedCmds = array(
     'mautic:segments:update --force',
     'mautic:campaigns:update --force',
     'mautic:campaigns:trigger --force',
-    'mautic:campaigns:update --batch-limit=25',
-    'mautic:campaigns:trigger --batch-limit=25',
-    'mautic:campaigns:messages --channel=email',
-    'mautic:campaigns:messages --channel=sms',
+    'mautic:segments:update --max-contacts=300 --batch-limit=300',
+    'mautic:segments:update --max-contacts=300 --batch-limit=300 --quiet',
+    'mautic:segments:update --max-contacts=300 --batch-limit=300 --force',
+    'mautic:segments:update --max-contacts=1000 --batch-limit=1000',
+    'mautic:segments:update --max-contacts=1000 --batch-limit=1000 --quiet',
+    'mautic:campaigns:update --max-contacts=100 --quiet',
+    'mautic:campaigns:update --max-contacts=300 --quiet',
+    'mautic:campaigns:trigger --quiet',
     'cache:clear --no-interaction --no-warmup --no-optional-warmers',
     'cache:warmup --no-interaction --no-optional-warmers',
     'mautic:social:monitoring',
-    'social:monitor:twitter:hashtags',
-    'social:monitor:twitter:mentions',
-    'mautic:dashboard:warm',
-    'debug:swiftmailer',
-    'mautic:integration:pushleadactivity',
-    'mautic:integration:fetchleads',
-    'mautic:contacts:deduplicate',
+    'mautic:integration:pushleadactivity --integration=XXX',
+    'mautic:integration:fetchleads --integration=XXX',
+    'mautic:import --limit=600',
     'mautic:import --limit=600 --quiet',
-    'mautic:dnc:import --no-interaction',
+    'mautic:dnc:import --limit=600',
+    'mautic:dnc:import --limit=600 --quiet',
     'mautic:maintenance:cleanup --no-interaction --days-old=90 --dry-run',
     'mautic:maintenance:cleanup --no-interaction --days-old=365 --dry-run',
     'mautic:maintenance:cleanup --no-interaction --days-old=90',
     'mautic:maintenance:cleanup --no-interaction --days-old=365',
-    'mautic:update:find',
-    'doctrine:mapping:info',
     'doctrine:migrations:status',
     'doctrine:migrations:status --show-versions',
-    'doctrine:schema:update --no-interaction --dump-sql',
-    'doctrine:migrations:migrate --no-interaction --allow-no-migration',
+    'doctrine:migrations:migrate --allow-no-migration --dry-run',
+    'doctrine:migrations:migrate --allow-no-migration --no-interaction',
+    'doctrine:migrations:migrate --allow-no-migration --query-time --dry-run',
+    'doctrine:migrations:migrate --allow-no-migration --query-time --no-interaction',
+    'doctrine:schema:update',
+    'doctrine:schema:update --dump-sql',
+    'doctrine:schema:validate',
     'doctrine:schema:update --no-interaction --dump-sql --force',
+    'doctrine:schema:update --no-interaction --force',
+    'debug:swiftmailer',
+    'debug:router',
+    'doctrine:mapping:info',
+    'debug:event-dispatcher',
     'mautic:install:data --no-interaction --force',
-    'mautic:update:apply --no-interaction --force'
+    'mautic:contacts:deduplicate',
+    'mautic:unusedip:delete',
+    'mautic:dashboard:warm',
+    'mautic:campaign:summarize',
+    'mautic:update:find',
+    'mautic:update:apply --no-interaction --force',
 );
 $css_container='<style type="text/css">
     body {
@@ -204,9 +219,10 @@ if (!isset($_GET['task'])) {
 
 $task = urldecode($_GET['task']);
 if (!in_array($task, $allowedCmds)) {
-    echo 'Command '.$task." is not allowed!\n";
-    die;
+    http_response_code(403);
+    die("Command {$task} is not allowed!");
 }
+
 // if (isset($pretty)) {
 //     // $options = ' --ansi';
 //     $options = '';
@@ -255,9 +271,13 @@ try {
     $app    = new Application($kernel);
     $app->setAutoExit(false);
     $result = $app->run($input, $output);
-    echo "<pre>\n{$output->fetch()}</pre>\n";
+
+    // command output
+    echo "\n<pre>\n{$output->fetch()}</pre>\n";
+
 } catch (\Exception $e) {
-    echo "Exception raised: {$e->getMessage()}\n";
+    echo "\nException raised: {$e->getMessage()}\n";
+
 } finally {
     if (isset($pretty)) {
         echo '
