@@ -1,7 +1,7 @@
 ---
 author:     Virgil <virgil@virgilwashere.co>
 date:       2019-10-20
-version:    0.1.4
+version:    0.1.5
 copyright:
   - 2019 Virgil
   - All rights reserved
@@ -16,6 +16,26 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 <a name="unreleased"></a>
 
 ## 🚧 [Unreleased]
+
+<a name="0.1.5"></a>
+## 🔖 [0.1.5] - 2019-10-20
+
+### ✨ Features
+
+- :tada: Updated command list
+
+### 🎨 Refactoring
+
+- :wrench: PHP and HTML co-existing
+
+### 🐛 Fixes
+
+- :art: update CSS colours
+- :bento: add new image assets
+
+### 📝 Documentation
+
+- :memo: nginx location block
 
 <a name="0.1.4"></a>
 ## 🔖 [0.1.4] - 2019-10-20
@@ -36,14 +56,16 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ### 🔨 Maintenance
 
-- :rotating_light: add markdownlint config for vscode
+- docs: Update CHANGELOG template
+- :rotating_light: add markdownlint config
 
 <details><summary>🔍Documentation details</summary>
 
 - :wrench: add yaml frontmatter to changelog template
 - :lipstick: add emoji to changelog
 - :rotating_light: Remove Markdown linter warnings
-- chore: Changelog commit details in summary tag
+
+chore: Changelog commit details in summary tag
 
 </details>
 
@@ -57,6 +79,10 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ### 📝 Documentation
 
 - :memo: Add screenshots
+
+### 🔨 Maintenance
+
+- :bookmark: release 0.1.3
 
 <a name="0.1.2"></a>
 ## 🔖 [0.1.2] - 2019-08-31
@@ -73,6 +99,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - :boom: removed duplicate commands
 - :bento: update base64 images
 - :children_crossing: moved the _dangerous_ commands to the end of the list
+
 
 <a name="0.1.1"></a>
 ## 🔖 [0.1.1] - 2019-08-31
@@ -102,7 +129,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 - :page_facing_up: Add issue templates
 
-[Unreleased]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.4...HEAD>
+[Unreleased]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.5...HEAD>
+[0.1.5]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.4...0.1.5>
 [0.1.4]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.3...0.1.4>
 [0.1.3]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.2...0.1.3>
 [0.1.2]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.1...0.1.2>
