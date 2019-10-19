@@ -1,12 +1,14 @@
 ---
 author:     Virgil <virgil@virgilwashere.co>
-date:       2019-09-17
-version:    0.1.3
-copyright:  2019 Virgil <virgil@virgilwashere.co>
+date:       2019-10-20
+version:    0.1.4
+copyright:
+  - 2019 Virgil
+  - All rights reserved
 license:    GPL3
 link:       <https://github.com/virgilwashere/mautic-cron-commands>
 ---
-# CHANGELOG
+# 📃 CHANGELOG
 
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
@@ -15,35 +17,54 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## 🚧 [Unreleased]
 
+<a name="0.1.4"></a>
+## 🔖 [0.1.4] - 2019-10-20
+
+### ️️🎉 Enhancements
+
+- :children_crossing: use img src links in html
+
+### 🐛 Fixes
+
+- :bug: wrong variable name for exception
+
 ### 📝 Documentation
 
+- :memo: update documentation references
+- :wrench: Update CHANGELOG template
 - :bug: Use GFM-compatible flash messages
 
-<a name="0.1.3"></a>
+### 🔨 Maintenance
 
+- :rotating_light: add markdownlint config for vscode
+
+<details><summary>🔍Documentation details</summary>
+
+- :wrench: add yaml frontmatter to changelog template
+- :lipstick: add emoji to changelog
+- :rotating_light: Remove Markdown linter warnings
+- chore: Changelog commit details in summary tag
+
+</details>
+
+<a name="0.1.3"></a>
 ## 🔖 [0.1.3] - 2019-09-10
 
-### 🎨 Code Refactoring
+### 🎨 Refactoring
 
-- :children_crossing: HTML standards compliance
-- :hammer: refactor PHP code
+- :art: improve HTML output
 
 ### 📝 Documentation
 
-- :lipstick: add screenshots of `pretty` output
-- :memo: update documentation references
-
-### 🔨 Repository maintenance
-
-- :bookmark: release 0.1.3
+- :memo: Add screenshots
 
 <a name="0.1.2"></a>
-
 ## 🔖 [0.1.2] - 2019-08-31
 
 ### ✨ Features
 
-- :art: updated `&pretty` output
+- :tada: updated pretty output
+
 - :bulb: document parameters
 - :sparkles: add email and sms channels to `mautic:campaigns:messages`
 - :ok_hand: add `--no-interaction` to commands that need it
@@ -54,7 +75,6 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - :children_crossing: moved the _dangerous_ commands to the end of the list
 
 <a name="0.1.1"></a>
-
 ## 🔖 [0.1.1] - 2019-08-31
 
 ### 📝 Documentation
@@ -62,12 +82,11 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - :memo: Add CHANGELOG
 - :page_facing_up: Create CODE_OF_CONDUCT.md
 
-### 🔨 Repository maintenance
+### 🔨 Maintenance
 
 - :wrench: dotfiles
 
 <a name="0.1.0"></a>
-
 ## 🔖0.1.0 - 2019-06-02
 
 ### ✨ Features
@@ -79,11 +98,12 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - :memo: add README
 - :page_facing_up: add GPL-3.0-only LICENSE
 
-### 🔨 Repository maintenance
+### 🔨 Maintenance
 
 - :page_facing_up: Add issue templates
 
-[Unreleased]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.3...HEAD>
+[Unreleased]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.4...HEAD>
+[0.1.4]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.3...0.1.4>
 [0.1.3]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.2...0.1.3>
 [0.1.2]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.1...0.1.2>
 [0.1.1]: <https://github.com/virgilwashere/mautic-cron-commands/compare/0.1.0...0.1.1>
