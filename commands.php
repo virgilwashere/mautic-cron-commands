@@ -17,6 +17,9 @@
  * @var         string $backarrow       img src
  * @var         string $logo            img src
  * @var         string $mautibot        img src
+ * @var         string $server_name     HTTP header SERVER_NAME
+ * @var         string $docroot         directory where script resides
+ * @var         string $version         Mautic version
  * @link        https://github.com/virgilwashere/mautic-cron-commands
  * @link        https://mautic.org
  * @see         https://www.mautic.org/docs/en/setup/cron_jobs.html
@@ -29,17 +32,33 @@
 
 $author='Virgil <virgil@virgilwashere.co>';
 
+$server_name = filter_input(INPUT_SERVER, 'SERVER_NAME');
+if (isset($_SERVER['APP_ROOT'])) {
+    $docroot = filter_input(INPUT_SERVER, 'APP_ROOT').'/mautic';
+} else {
+    $docroot = __DIR__;
+}
+
+require_once $docroot.'/app/autoload.php';
+require_once $docroot.'/app/AppKernel.php';
+require $docroot.'/vendor/autoload.php';
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\BufferedOutput;
+
 $secretphrase= "mautibot_happy";
 if (!isset($_GET[$secretphrase])) {
     http_response_code(401);
     die('Unauthorized');
 }
 defined('IN_MAUTIC_CONSOLE') or define('IN_MAUTIC_CONSOLE', 1);
-$version = file_get_contents(__DIR__.'/app/version.txt');
+
+$version = file_get_contents($docroot.'/app/version.txt');
 if (isset($_GET['pretty'])) {
     $pretty = $_GET['pretty'];
 }
-$request_uri =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$request_uri =  "//{$server_name}{$_SERVER['REQUEST_URI']}";
 
 $allowedCmds = array(
     'list',
@@ -112,56 +131,99 @@ $allowedCmds = array(
     'mautic:update:find',
     'mautic:update:apply --no-interaction --force',
 );
-$css_container='<style type="text/css">
-    body {
-        padding: 20px;
-        font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
-    }
-    li { font-size: smaller; }
-    h3 {
-        font-family: Open Sans, Helvetica, Arial,sans-serif;
-    }
-    .container {
-        padding: 20px 20px 20px;
-        max-width: 600px;
-        background-color:#4E5E9E;
-        border: 3px solid #4E5E9E;
-    }
-    .container__image {
-        display: inline-block;
-        vertical-align: top;
-        margin: 0px 20px 0 0;
-        width: 13%;
-        border: 3px solid #4E5E9E;
-    }
-    .container__heading {
-        display: inline-block;
-        vertical-align: top;
-        width: 80%;
-        color:#FCB833;
-        border: 3px solid #4E5E9E;
-    }
-    .container__arrow {
-        display: inline-block;
-        vertical-align: top;
-        padding: 0px 10px 0px 0px;
-        text-align:center;
-        max-width: 160px;
-        background-color:#4E5E9E;
-        border: 3px solid #4E5E9E;
-    }
-    @media (max-width: 620px) {
-        .container__heading {
-            width: 100%;
-        }
-    }</style>';
 
-    $html_head = '<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">';
-$head_meta = '    <meta name="author" content="'. $author .'">
+// color:#FCB833;
+$css='    <style type="text/css">
+        .black   { color: #111111 }
+        .gray    { color: #AAAAAA }
+        .silver  { color: #DDDDDD }
+        .white   { color: #FFFFFF }
+        .aqua    { color: #7FDBFF }
+        .blue    { color: #0074D9 }
+        .navy    { color: #001F3F }
+        .teal    { color: #39CCCC }
+        .green   { color: #2ECC40 }
+        .olive   { color: #3D9970 }
+        .lime    { color: #01FF70 }
+        .yellow  { color: #FFDC00 }
+        .orange  { color: #FF851B }
+        .red     { color: #FF4136 }
+        .fuchsia { color: #F012BE }
+        .purple  { color: #B10DC9 }
+        .maroon  { color: #85144B }
+        a {
+            transition: color .4s;
+            color: #265C83;
+        }
+        a:link,
+        a:visited { color: #265C83; }
+        a:hover   { color: #7FDBFF; }
+        a:active  {
+            transition: color .3s;
+            color: #0074D9;
+        }
+        .link { text-decoration: none; }
+        body {
+            padding: 20px;
+            font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+        }
+        li { font-size: smaller; }
+        h3 {
+            font-family: Open Sans, Helvetica, Arial,sans-serif;
+        }
+        .container {
+            padding: 0px 20px 0px;
+            max-width: 600px;
+            background-color:#4E5E9E;
+            border: 3px solid #4E5E9E;
+        }
+        .container__logo {
+            display: inline-block;
+            vertical-align: top;
+            margin: 20px 20px 0 0;
+            width: 45%;
+            border: 3px solid #4E5E9E;
+        }
+        .container__heading {
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            width: 45%;
+            color:#FFDC00;
+            border: 3px solid #4E5E9E;
+        }
+        .container__image {
+            display: inline-block;
+            vertical-align: top;
+            margin: 5px 10px 5px 0;
+            width: 13%;
+            border: 3px solid #4E5E9E;
+        }
+        .container__results {
+            display: inline-block;
+            vertical-align: top;
+            width: 80%;
+            color:#FFDC00;
+            border: 3px solid #4E5E9E;
+        }
+        .container__arrow {
+            display: inline-block;
+            vertical-align: top;
+            padding: 0px 10px 0px 0px;
+            text-align:center;
+            max-width: 160px;
+            background-color:#4E5E9E;
+            border: 3px solid #4E5E9E;
+        }
+        @media (max-width: 620px) {
+            .container__results {
+                width: 100%;
+            }
+        }
+    </style>';
+$html_meta = '    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="'. $author .'">
     <meta name="description" content="Mautic cron and maintenance commands">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow" />
@@ -183,37 +245,44 @@ $logo=$cdn . '/assets/mautic_logo.png';
 $backarrow=$cdn . '/assets/arrow-left-trans.png';
 
 if (!isset($_GET['task'])) {
-    // Command selection
-    echo "$html_head\n";
-    echo "<title>Mautic Maintenance Commands</title>\n";
-    echo "$head_meta\n";
-    if (isset($pretty)) {
-        echo "$css_container\n";
-        echo "  </head><body>\n";
-        echo '
+
+    // Command selection ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mautic Maintenance Commands</title>
+<?php if (isset($pretty)) {
+        echo "$html_meta\n";
+        echo "$css\n"; ?>
+</head><body>
     <div class="container">
-        <a target="new" href="/s/login"><img class="container__image" src="'.$logo.'" alt="logo"></a>
-        <div class="container__heading">'."
-            <h3>{$_SERVER['HTTP_HOST']} maintenance commands</h3>
+        <a target="_blank" href="/s/login"><img class="container__logo" src="<?php echo $logo ?>" alt="logo"></a>
+        <div class="container__heading">
+            <h3><?php echo $server_name ?></h3><h3>maintenance commands</h3>
         </div>
-    </div>\n";
-    } else {
-        echo "</head><body>\n";
-        echo "<h3>{$_SERVER['HTTP_HOST']} maintenance commands</h3>\n";
-    }
-    if (isset($version)) {
-        echo '<p title="version"><small>Mautic version: <strong style="color:blue">'.$version."</strong></small></p>\n";
-    }
-    echo '<p title="cmdlist">Select a command from the list:</p>'."\n";
-    echo '<ul id="allowedcommandslist">'."\n";
+    </div>
+<?php } else { ?>
+</head><body>
+    <h3><?php echo $server_name ?> maintenance commands</h3>
+
+<?php }
+
+    if (isset($version)) { ?>
+        <p title="version"><small>Mautic version: <strong style="color:blue"><?php echo $version ?></strong></small></p>
+
+<?php } ?>
+    <p title="cmdlist">Select a command from the list:</p>
+    <ul id="allowedcommandslist">
+<?php
     foreach ($allowedCmds as $task) {
         $link = $request_uri.'&task='.urlencode($task);
         echo '<li><a href="'.$link.'">'.$task."</a></li>\n";
-    }
-    echo "</ul><hr>\n";
-    echo '<p title="warning">Please, <strong style="color:red">backup your database</strong> before executing <code>doctrine:*:*</code> commands! (or anything with <code>--force</code>)</p>'."\n";
-    echo '<p>Mautic documentation: <a href="https://www.mautic.org/docs/en/setup/cron_jobs.html">Setup cronjobs</a> and <a href="https://www.mautic.org/docs/en/tips/update-failed.html">Upgrade troubleshooting</a>.</p>'."\n";
-    echo "</body></html>\n";
+    } ?>
+    </ul><hr>
+    <p title="warning">Please, <strong style="color:red">backup your database</strong> before executing <code>doctrine:*:*</code> commands! (or anything with <code>--force</code>)</p>
+    <p><a target="_blank" href="https://www.mautic.org/docs">Mautic documentation</a>: <a href="https://www.mautic.org/docs/en/setup/cron_jobs.html" target="_blank">Setup cronjobs</a> and <a href="https://www.mautic.org/docs/en/tips/update-failed.html" target="_blank">Upgrade troubleshooting</a>.</p>
+</body></html>
+<?php
     die;
 }
 
@@ -238,31 +307,29 @@ if ($argsCount) {
         $console[] = $fullCommand[$i];
     }
 }
-// Command results
-    echo "$html_head\n";
-    echo '<title>Command: '.implode(' ', $console)."</title>\n";
-    echo "$head_meta\n";
-if (isset($pretty)) {
-    echo "$css_container\n";
-    echo "</head><body>\n";
-    echo '
-<div class="container">
-    <img class="container__image" src="'.$mautibot.'" alt="Mautibot™">
-    <div class="container__heading">'."
-        <h3>Executing console command</h3>
+
+// Command results ?>
+<?php if (isset($pretty)) { ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Command: <?php echo implode(' ', $console) ?></title>
+    <?php echo "$html_meta\n" ?>
+    <?php echo "$css\n" ?>
+</head><body>
+    <div class="container">
+        <img class="container__image" src="<?php echo $mautibot ?>" alt="Mautibot™">
+        <div class="container__results">
+            <h3><?php echo $server_name ?> command output</h3>
+            <p>Executing <code><?php echo implode(' ', $console) ?></code></p>
+        </div>
     </div>
-</div>\n";
-} else {
-    echo "</head><body>\n";
-    echo "<h3>Executing console command</h3>\n";
-}
-    echo "<pre>".implode(' ', $console)."</pre>\n";
-require_once __DIR__.'/app/autoload.php';
-require_once __DIR__.'/app/AppKernel.php';
-require __DIR__.'/vendor/autoload.php';
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Console\Output\BufferedOutput;
+<?php } else { ?>
+<?php echo $server_name ?> command output<br />
+Executing <code><?php echo implode(' ', $console) ?></code><br />
+<?php }
+
+// Run the application
 
 try {
     $input  = new ArgvInput($console);
@@ -279,13 +346,13 @@ try {
     echo "\nException raised: {$e->getMessage()}\n";
 
 } finally {
-    if (isset($pretty)) {
-        echo '
+    if (isset($pretty)) { ?>
     <div class="container">
         <a href="javascript:history.back(1)" title="Return to the previous page">
-            <img class="container__arrow" src="'.$backarrow.'" alt="&laquo; Go back">
+            <img class="container__arrow" src="<?php echo $backarrow ?>" alt="&laquo; Go back">
         </a>
-    </div>'."\n";
-    }
-    echo "</body></html>\n";
+    </div>
+</body></html>
+
+<?php }
 }
