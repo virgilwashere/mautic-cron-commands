@@ -1,14 +1,14 @@
 ---
 author:     Virgil <virgil@virgilwashere.co>
 date:       2019-10-20
-version:    0.1.5
+version:    0.1.6
 copyright:
   - 2019 Virgil
   - All rights reserved
 license:    GPL3
 link:       <https://github.com/virgilwashere/mautic-cron-commands>
 ---
-<img alt="Mautic" align="right" width=72 src="assets/mautic_logo.png?raw=true">
+<img alt="Mautic" align="right" width=128 src="assets/mautic_logo.png?raw=true">
 
 # Mautic cron commands
 
@@ -65,7 +65,7 @@ server {
 ```nginx
     location /cron/ {
         # URL would be https://mautic.example.com/cron/commands.php
-        root    /mnt/www/mautic/;
+        root    $mautic_root;
         index   commands.php;
 
         location ~ /(commands|import)\.php(/|$) {

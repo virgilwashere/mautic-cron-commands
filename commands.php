@@ -7,7 +7,7 @@
  *
  * @abstract    Script to run Mautic (mautic.org) commands from a web page.
  * @copyright   2019 Virgil. All rights reserved
- * @version     0.1.5
+ * @version     0.1.6
  * @date        2019-10-20
  * @author      Virgil <virgil@virgilwashere.co>
  * @license     GPL3
