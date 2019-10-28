@@ -1,0 +1,182 @@
+# These settings are synced to GitHub by https://probot.github.io/apps/settings/
+
+repository:
+  # See https://developer.github.com/v3/repos/#edit for all available settings.
+
+  # The name of the repository. Changing this will rename the repository
+  name: mautic-cron-commands
+
+  # A short description of the repository that will show up on GitHub
+  description: Script to run Mautic console commands from a web page.
+
+  # A URL with more information about the repository
+  homepage: https://forum.mautic.org/
+
+  # A comma-separated list of topics to set on the repository
+  topics: mautic,console,cron,cronjobs,php,cron-jobs,appkernel,symfony,symfony2.8,mautic-marketing-automation
+
+  # Either `true` to make the repository private, or `false` to make it public.
+  private: false
+
+  # Either `true` to enable issues for this repository, `false` to disable them.
+  has_issues: true
+
+  # Either `true` to enable projects for this repository, or `false` to disable them.
+  # If projects are disabled for the organization, passing `true` will cause an API error.
+  has_projects: false
+
+  # Either `true` to enable the wiki for this repository, `false` to disable it.
+  has_wiki: false
+
+  # Either `true` to enable downloads for this repository, `false` to disable them.
+  has_downloads: true
+
+  # Updates the default branch for this repository.
+  default_branch: master
+
+  # Either `true` to allow squash-merging pull requests, or `false` to prevent
+  # squash-merging.
+  allow_squash_merge: true
+
+  # Either `true` to allow merging pull requests with a merge commit, or `false`
+  # to prevent merging pull requests with merge commits.
+  allow_merge_commit: true
+
+  # Either `true` to allow rebase-merging pull requests, or `false` to prevent
+  # rebase-merging.
+  allow_rebase_merge: true
+
+# Labels: define labels for Issues and Pull Requests
+labels:
+  - name: :memo: documentation
+  - color: '#EFC050'
+  - description: Documentation related.
+  - oldname: documentation
+
+  - name: :lock: security
+  - color: '#9B2335'
+  - description: Concerns or address a security vulnerability.
+
+  - name: :ambulance: critical
+  - color: '#9B2335'
+  - description: Critical hotfix.
+
+  - name: :wrench: maintenance
+  - color: '#84b6eb'
+  - description: Maintenance tasks, usually to do with CI, or project structure.
+
+  - name: :ballot_box_with_check: unit tests
+  - color: '#84b6eb'
+  - description: This issue or pull request is about tests.
+
+  - name: :bug: bug
+  - color: '#BC243C'
+  - description: Something isn't working as expected.
+  - oldname: bug
+
+  - name: :sparkles: feature
+  - color: '#3CB44B'
+  - description: New functionality.
+
+  - name: :sparkler: enhancement
+  - color: '#159818'
+  - description: Improving an already-existing feature.
+  - oldname: enhancement
+
+  - name: :cherries: good first issue
+  - color: '#AAFFC3'
+  - description: Good for newcomers.
+  - oldname: good first issue
+
+  - name: help wanted
+  - color: '#BFEF45'
+  - description: This issue or pull request needs Extra attention.
+  - oldname: helpwanted
+
+  - name: :speech_balloon: discussion
+  - color: '#0074D9'
+  - description: This issue is for discussion of the topic.
+  # - color: '#cc317c'
+
+  - name: question :question:
+  - color: '#39CCCC'
+  - description: Further information is requested.
+  - oldname: question
+
+  - name: :lipstick: page design
+  - color: '#9A6324'
+  - description: This issue is about a web page design.
+
+  - name: :computer: console command
+  - color: '#D876E3'
+  - description: This issue is about a console command.
+
+  - name: ":jack_o_lantern: hacktoberfest"
+  - color: '#F58231'
+  - description: Issues available for Hacktoberfest (hacktoberfest.digitalocean.com)
+
+  - name: :pause_button: on hold
+  - color: '#DFCFBE'
+  - description: Progress on this issue or PR is currently suspended.
+  - oldname: wontfix
+
+  - name: :construction: in progress
+  - description: This issue is currently being worked on.
+  - color: '#2ECC40'
+
+  - name: :eyes: review needed
+  - color: '#FFE119'
+  - description: This pull request needs reviewing.
+
+  - name: ":arrow_double_up: upstream update"
+  - color: '#FF851B'
+  - description: Reset the repository from upstream
+
+  - name: :zzz: backlog
+  - color: '#001f3f'
+  - description: This issue is on the backlog
+
+  - name: duplicate
+  - color: '#CFD3D7'
+  - description: This issue or pull request already exists.
+
+  - name: invalid
+  - color: '#e6e6e6'
+  - description: This issue or pull request already exists.
+
+# Milestones: define milestones for Issues and Pull Requests
+# milestones:
+#   - title: milestone-title
+#     description: milestone-description
+#     # The state of the milestone. Either `open` or `closed`
+#     state: open
+
+branches:
+  - name: master
+    # https://developer.github.com/v3/repos/branches/#update-branch-protection
+    # Branch Protection settings. Set to null to disable
+    protection:
+      # Required. Require at least one approving review on a pull request, before merging. Set to null to disable.
+      required_pull_request_reviews:
+        # The number of approvals required. (1-6)
+        required_approving_review_count: 1
+        # Dismiss approved reviews automatically when a new commit is pushed.
+        dismiss_stale_reviews: true
+        # Blocks merge until code owners have reviewed.
+        require_code_owner_reviews: true
+        # Specify which users and teams can dismiss pull request reviews. Pass an empty dismissal_restrictions object to disable. User and team dismissal_restrictions are only available for organization-owned repositories. Omit this parameter for personal repositories.
+        dismissal_restrictions:
+          users: []
+          teams: []
+      # Required. Require status checks to pass before merging. Set to null to disable
+      required_status_checks:
+        # Required. Require branches to be up to date before merging.
+        strict: true
+        # Required. The list of status checks to require in order to merge into this branch
+        contexts: []
+      # Required. Enforce all configured restrictions for administrators. Set to true to enforce required status checks for repository administrators. Set to null to disable.
+      enforce_admins: true
+      # Required. Restrict who can push to this branch. Team and user restrictions are only available for organization-owned repositories. Set to null to disable.
+      restrictions:
+        users: []
+        teams: []
