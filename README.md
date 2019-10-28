@@ -8,7 +8,8 @@ copyright:
 license:    GPL3
 link:       <https://github.com/virgilwashere/mautic-cron-commands>
 ---
-<img alt="Mautic" align="right" width=128 src="assets/mautic_logo.png?raw=true">
+<img alt="Mautic" align="right" width=128 src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautic_logo.png">
+<!-- <img alt="Mautic" align="right" width=128 src="assets/mautic_logo.png?raw=true"> -->
 
 # Mautic cron commands
 
@@ -38,7 +39,8 @@ link:       <https://github.com/virgilwashere/mautic-cron-commands>
 > ⚠️**WARNING**\
 > **_DO NOT_** leave the `$secretphrase` as `mautibot_happy`
 
-1. ✏️Edit your local copy of [commands.php]
+1. :arrow_down_small:️ Download [`commands.php`] (or clone the repo)
+1. ✏️Edit your local copy of [`commands.php`]
    1. 🔐 Change the `$secretphrase` parameter in the script to a **_new_** secret phrase so only you will be able to run the commands.
    1. 🎨 Optional: replace `$logo` with another `<img src=` link.
 
@@ -86,8 +88,8 @@ server {
 
 ## How to use 🚴
 
-<!-- <img alt="mautibot" align="right" src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautibot32.png"> -->
-<img alt="mautibot" align="right" src="assets/mautibot32.png?raw=true">
+<img alt="mautibot" align="right" src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautibot32.png">
+<!-- <img alt="mautibot" align="right" src="assets/mautibot32.png?raw=true"> -->
 
 When you open the URL, you are presented with a list of available commands. You can click on those to run the command, or use the Encoded URL link to a specific command in a cronjob/scheduler service, like [Jenkins CI/CD][jenkins].
 
@@ -105,8 +107,8 @@ When you open the URL, you are presented with a list of available commands. You 
     https://mautic.example.com/commands.php?mautibot_happy&pretty
    ```
 
-<!-- ![pretty-list](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-list.png "command list") -->
-![caption: pretty mode command list](/assets/pretty-list.png?raw=true "command list")
+![pretty-list](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-list.png "command list")
+<!-- ![caption: pretty mode command list](/assets/pretty-list.png?raw=true "command list") -->
 
 <details><summary>command list</summary>
 
@@ -233,13 +235,14 @@ Executing console mautic:campaigns:trigger
 
 ### 💍 Pretty output
 
-<!-- ![pretty format campaign trigger](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-output.png "pretty format command output") -->
-![pretty format campaign trigger](assets/pretty-output.png?raw=true "pretty format campaign trigger")
+![pretty format campaign trigger](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-output.png "pretty format campaign trigger")
+<!-- ![pretty format campaign trigger](assets/pretty-output.png?raw=true "pretty format campaign trigger") -->
 
-![pretty format migrations status](assets/pretty-output2.png?raw=true "pretty format migrations status")
+![pretty format migrations status](https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/pretty-output2.png "pretty format migrations status")
+<!-- ![pretty format migrations status](assets/pretty-output2.png?raw=true "pretty format migrations status") -->
 
-<!-- <img alt="Mautic logo" align="right" width=128 src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautic_logo.png"> -->
-<img alt="Mautic logo" align="right" width=128 src="assets/mautic_logo.png?raw=true">
+<img alt="Mautic logo" align="right" width=128 src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautic_logo.png">
+<!-- <img alt="Mautic logo" align="right" width=128 src="assets/mautic_logo.png?raw=true"> -->
 
 ## Mautic documentation 📜
 
@@ -250,8 +253,8 @@ Executing console mautic:campaigns:trigger
 - [Update troubleshooting]
 - [Command line]
 
-<!-- <img alt="mautibot" align="right" src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautibot32.png"> -->
-<img alt="mautibot" align="right" src="assets/mautibot32.png?raw=true">
+<img alt="mautibot" align="right" src="https://cdn.jsdelivr.net/gh/virgilwashere/mautic-cron-commands/assets/mautibot32.png">
+<!-- <img alt="mautibot" align="right" src="assets/mautibot32.png?raw=true"> -->
 
 ## Related projects ⛅️
 
@@ -262,6 +265,9 @@ Executing console mautic:campaigns:trigger
 ## Changelog 📔
 
 See [CHANGELOG](CHANGELOG.md)
+
+<!-- ## Contributors
+[![All Contributors](https://img.shields.io/badge/all_contributors-<%=contributors.length %>-orange.svg?style=flat-square)](#contributors)" -->
 
 [repo]: <https://github.com/virgilwashere/mautic-cron-commands>
 [commands.php]: <commands.php>

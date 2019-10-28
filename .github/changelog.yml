@@ -12,22 +12,28 @@ options:
   commits:
     filters:
       Type:
+        - docs
         - feat
         - fix
         - perf
         - refactor
-        - docs
         - chore
+        - test
+        - ci
+        -vendor
   commit_groups:
     group_by: Type
     sort_by: Title
     title_maps:
+      docs: 📝 Documentation
       feat: ✨ Features
       fix: 🐛 Fixes
-      perf: ️️🎉 Enhancements
-      refactor: 🎨 Refactoring
-      docs: 📝 Documentation
-      chore: 🔨 Maintenance
+      perf: ⚡ Performance
+      refactor: ♻ Refactoring
+      chore: 🔧 Maintenance
+      test: ✅ Tests
+      ci: 👷‍♀️ CI configuration
+      vendor: 📦 Dependencies
 
   header:
     # pattern: "^(\\w*)\\:\\s(.*)$"
