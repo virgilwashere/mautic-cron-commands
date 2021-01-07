@@ -62,7 +62,7 @@ $version = file_get_contents($docroot.'/app/version.txt');
 if (isset($_GET['pretty'])) {
     $pretty = $_GET['pretty'];
 }
-$request_uri =  "//{$server_name}{$_SERVER['REQUEST_URI']}";
+$request_uri =  "{$_SERVER['REQUEST_URI']}";
 
 $allowedCmds = array(
     'list',
