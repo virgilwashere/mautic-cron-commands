@@ -58,7 +58,14 @@ if (!isset($_GET[$secretphrase])) {
 }
 defined('IN_MAUTIC_CONSOLE') or define('IN_MAUTIC_CONSOLE', 1);
 
-$version = file_get_contents($docroot.'/app/version.txt');
+if(file_exists($docroot.'/app/version.txt')) {
+	$version = file_get_contents($docroot.'/app/version.txt');
+}else{
+	$release = file_get_contents($docroot.'/app/release_metadata.json');
+	$json = json_decode($release, true);
+	$version = $json['version'];
+}
+
 if (isset($_GET['pretty'])) {
     $pretty = $_GET['pretty'];
 }
@@ -274,6 +281,10 @@ if (!isset($_GET['task'])) {
     if (isset($version)) { ?>
         <p title="version"><small>Mautic version: <strong style="color:blue"><?php echo $version ?></strong></small></p>
 
+<?php } if(isset($version)) {
+        unset($allowedCmds[0]);
+    ?>
+    <p title="commands in current version"><small style="color:red">Check the <a href="<?php echo $request_uri.'&task=list'; ?>">list of commands</a> available in the current version.</small> <small style="color:gray;"><abbr title="If you found a command not listed in the list below, insert the command in the variable $allowedCmds, so it will be available in the current version.">(?)</abbr></small></p>
 <?php } ?>
     <p title="cmdlist">Select a command from the list:</p>
     <ul id="allowedcommandslist">
